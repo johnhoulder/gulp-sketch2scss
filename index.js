@@ -6,20 +6,38 @@ const through = require('through2'),
 
 function processSketchFile(fileContents) {
     let data = zip(fileContents, {base64: false, checkCRC32: true});
-
-    let filenames = [];
+    let newContents = '';
 
     for(let k in data.files) {
-        filenames.push(k);
+        if(k.indexOf('pages/') >= 0) {
+            let page = JSON.parse(data.files[k]._data);
+
+            if(page.name === 'Symbols') {
+                page.layers.forEach((rootLayer) => {
+                    if(rootLayer.name.indexOf('color/') >= 0) {
+                        if(rootLayer.layers[0].style.fills !== undefined) {
+                            let colors = rootLayer.layers[0].style.fills[0].color;
+
+                            let r = colors.red.toFixed(2),
+                                g = colors.green.toFixed(2),
+                                b = colors.blue.toFixed(2),
+                                a = colors.alpha.toFixed(2);
+
+                            let fstring = '$' + rootLayer.name.replace(/\//g, '_') + ': rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ');';
+
+                            newContents += fstring + '\n';
+                        }
+                    }
+                });
+            }
+        }
     }
 
-    console.log(filenames);
+    let stream = through();
 
-    // var stream = through();
+    stream.write(newContents);
 
-    // stream.write(prefixText);
-
-    // return stream;
+    return stream;
 }
 
 module.exports = () => {

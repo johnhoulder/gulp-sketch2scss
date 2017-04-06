@@ -15,12 +15,11 @@ describe('gulp-sketch2scss', function() {
 
             var stream = sketch2scss();
 
-            stream.on('data', function(newFile) {
-                should.exist(newFile);
-                should.exist(newFile.contents);
+            stream.on('data', function(data) {
+                // should.exist(newFile);
+                // should.exist(newFile.contents);
 
-                String(newFile.contents).should.equal(fs.readFileSync('test/expected/sketch.scss', 'utf8'));
-                done();
+                String(data.read().toString()).should.equal(fs.readFileSync('test/expected/sketch.scss', 'utf8'));
             });
 
             stream.write(file);

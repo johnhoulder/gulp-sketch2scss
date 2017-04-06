@@ -17,8 +17,8 @@ Then simply add the following to your gulpfile.
 `gulpfile.js`:
 
 ```javascript
-var gulp        = require('gulp'),
-    sketch2scss     = require('gulp-sketch2scss'),
+var gulp = require('gulp'),
+    sketch2scss = require('gulp-sketch2scss');
 
 gulp.task("sketch", function() {
     gulp.src('design/design.sketch')
