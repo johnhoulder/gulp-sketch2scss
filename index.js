@@ -1,16 +1,15 @@
-var through = require('through2');
-var gutil = require('gulp-util');
-var zip = require('node-zip');
-var PluginError = gutil.PluginError;
-
-// Consts
-const PLUGIN_NAME = 'gulp-sketch2scss';
+const through = require('through2'),
+      gutil = require('gulp-util'),
+      zip = require('node-zip'),
+      PluginError = gutil.PluginError,
+      PLUGIN_NAME = 'gulp-sketch2scss';
 
 function processSketchFile(fileContents) {
-    var data = zip(fileContents, {base64: false, checkCRC32: true});
+    let data = zip(fileContents, {base64: false, checkCRC32: true});
 
-    var filenames = [];
-    for(var k in data.files) {
+    let filenames = [];
+
+    for(let k in data.files) {
         filenames.push(k);
     }
 
@@ -23,16 +22,14 @@ function processSketchFile(fileContents) {
     // return stream;
 }
 
-function sketch2scss() {
+module.exports => () {
     return through.obj(function(file, enc, cb) {
         if (file.isNull()) {
             throw new PluginError(PLUGIN_NAME, 'Invalid file passed through.');
         }
 
-        var data = processSketchFile(file.contents);
+        let data = processSketchFile(file.contents);
 
         cb(null, data);
     });
-}
-
-module.exports = sketch2scss;
+};
