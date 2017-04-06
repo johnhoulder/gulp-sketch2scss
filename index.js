@@ -22,7 +22,7 @@ function processSketchFile(fileContents) {
     // return stream;
 }
 
-module.exports => () {
+module.exports = () => {
     return through.obj(function(file, enc, cb) {
         if (file.isNull()) {
             throw new PluginError(PLUGIN_NAME, 'Invalid file passed through.');
