@@ -1,0 +1,21 @@
+{
+  "name": "gulp-sketch2scss",
+  "version": "0.0.1",
+  "description": "Converts Sketch files to SCSS variables",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sketch",
+    "gulp",
+    "scss",
+    "convert",
+    "variables"
+  ],
+  "author": "John Houlder <admin@toxic-productions.com>",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "node-zip": "^1.1.1"
+  }
+}
