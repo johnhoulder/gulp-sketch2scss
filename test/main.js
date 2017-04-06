@@ -1,5 +1,4 @@
-var gutil = require('gulp-util'),
-    should = require('should'),
+var should = require('should'),
     sketch2scss = require('../sketch2scss'),
     fs = require('fs'),
     File = require('vinyl');
