@@ -1,5 +1,5 @@
 var should = require('should'),
-    sketch2scss = require('../sketch2scss'),
+    sketch2scss = require('../'),
     fs = require('fs'),
     File = require('vinyl');
 

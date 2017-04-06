@@ -16,8 +16,10 @@
   "author": "John Houlder <admin@toxic-productions.com>",
   "license": "MIT",
   "dependencies": {
+    "gulp-util": "^3.0.8",
     "node-zip": "^1.1.1",
-    "readable-stream": "^2.0.1"
+    "readable-stream": "^2.0.1",
+    "through2": "^2.0.3"
   },
   "devDependencies": {
     "concat-stream": "^1.5.2",
